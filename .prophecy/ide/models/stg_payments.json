@@ -1,0 +1,146 @@
+{
+  "id" : "stg_payments",
+  "metainfo" : {
+    "label" : "stg_payments",
+    "autoLayout" : false,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "userDefinedConfig" : {
+        "vars" : { }
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "source##GTrBOqGM" : {
+      "id" : "source##GTrBOqGM",
+      "component" : "Seed",
+      "metadata" : {
+        "label" : "source",
+        "x" : 20,
+        "y" : 20,
+        "phase" : 0,
+        "comment" : "-\n    Normally we would select from the table here, but we are using seeds to load\n    our data in this project\n    ",
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "raw_payments",
+          "sourceType" : "Seed"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "bTSjKpvu",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 0
+    },
+    "renamed##dfmZxb8J" : {
+      "id" : "renamed##dfmZxb8J",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "renamed",
+        "x" : 220,
+        "y" : 20,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "id"
+          },
+          "alias" : "payment_id",
+          "_row_id" : "764014991"
+        }, {
+          "expression" : {
+            "expression" : "order_id"
+          },
+          "_row_id" : "1940887748"
+        }, {
+          "expression" : {
+            "expression" : "payment_method"
+          },
+          "_row_id" : "906745205"
+        }, {
+          "expression" : {
+            "expression" : "-- `amount` is currently stored in cents, so we convert it to dollars\namount / 100"
+          },
+          "alias" : "amount",
+          "_row_id" : "147377644"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "SjCb5OJf",
+          "slug" : "source"
+        } ],
+        "outputs" : [ {
+          "id" : "C8vU3UrS",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 1
+    },
+    "final##UAconufd" : {
+      "id" : "final##UAconufd",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "stg_payments",
+        "x" : 420,
+        "y" : 20,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT *\n\nFROM renamed\n",
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "O7h40xAD",
+          "slug" : "renamed"
+        } ],
+        "outputs" : [ {
+          "id" : "bhr2z3Q1",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 2
+    }
+  },
+  "connections" : [ {
+    "id" : "Aaa7tpaH",
+    "source" : "source##GTrBOqGM",
+    "sourcePort" : "bTSjKpvu",
+    "target" : "renamed##dfmZxb8J",
+    "targetPort" : "SjCb5OJf"
+  }, {
+    "id" : "YBKCKOOs",
+    "source" : "renamed##dfmZxb8J",
+    "sourcePort" : "C8vU3UrS",
+    "target" : "final##UAconufd",
+    "targetPort" : "O7h40xAD"
+  } ],
+  "component" : "Model"
+}

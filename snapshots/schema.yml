@@ -1,0 +1,27 @@
+---
+version: 2
+snapshots:
+- name: "orders_snapshot"
+  columns:
+  - name: "dbt_valid_to"
+    dataType:
+      type: "Date"
+  - name: "order_id"
+    dataType:
+      type: "Integer"
+  - name: "dbt_updated_at"
+    dataType:
+      type: "Date"
+  - name: "dbt_valid_from"
+    dataType:
+      type: "Date"
+  - name: "order_date"
+    dataType:
+      type: "Date"
+  - name: "status"
+    dataType:
+      type: "String"
+  - name: "dbt_scd_id"
+    dataType:
+      type: "String"
+  tests: []

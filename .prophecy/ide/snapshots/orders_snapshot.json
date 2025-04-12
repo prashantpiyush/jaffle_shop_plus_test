@@ -1,0 +1,145 @@
+{
+  "id" : "orders_snapshot",
+  "metainfo" : {
+    "label" : "orders_snapshot",
+    "autoLayout" : false,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "strategy" : "\"timestamp\"",
+        "updated_at" : "\"order_date\"",
+        "target_schema" : "\"SNAPSHOT\"",
+        "target_database" : "\"JAFFLE_SHOP\"",
+        "unique_key" : "\"order_id\"",
+        "type" : "SnapshotConfig"
+      },
+      "userDefinedConfig" : {
+        "vars" : { }
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "orders_model##Q9yWjmwH" : {
+      "id" : "orders_model##Q9yWjmwH",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "orders_model",
+        "x" : 20,
+        "y" : 20,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "orders",
+          "sourceType" : "Model"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "drUsTGuD",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 0
+    },
+    "order_details##pBUBp5Zk" : {
+      "id" : "order_details##pBUBp5Zk",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "order_details",
+        "x" : 220,
+        "y" : 20,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "status"
+          },
+          "_row_id" : "1276154619"
+        }, {
+          "expression" : {
+            "expression" : "order_id"
+          },
+          "_row_id" : "892441921"
+        }, {
+          "expression" : {
+            "expression" : "order_date"
+          },
+          "_row_id" : "1899458985"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "MA704exG",
+          "slug" : "orders_model"
+        } ],
+        "outputs" : [ {
+          "id" : "PQD8jmOd",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "final##cxBu8xW2" : {
+      "id" : "final##cxBu8xW2",
+      "component" : "TargetSnapshot",
+      "metadata" : {
+        "label" : "orders_snapshot",
+        "x" : 420,
+        "y" : 20,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT * \n\nFROM order_details\n",
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "K5XARjnY",
+          "slug" : "order_details"
+        } ],
+        "outputs" : [ {
+          "id" : "Ui7CUYy0",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "dU9FVpZt1vYcFlXw6hxvf",
+    "source" : "orders_model##Q9yWjmwH",
+    "sourcePort" : "drUsTGuD",
+    "target" : "order_details##pBUBp5Zk",
+    "targetPort" : "MA704exG"
+  }, {
+    "id" : "nJv8tpdJHsExJluU4gY3z",
+    "source" : "order_details##pBUBp5Zk",
+    "sourcePort" : "PQD8jmOd",
+    "target" : "final##cxBu8xW2",
+    "targetPort" : "K5XARjnY"
+  } ],
+  "component" : "Snapshot"
+}

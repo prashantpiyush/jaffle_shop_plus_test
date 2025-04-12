@@ -1,37 +1,54 @@
-name: 'jaffle_shop'
-
+# ==================
+# Project Details
+# ==================
+name: "jaffle_shop"
 config-version: 2
-version: '0.1'
+require-dbt-version:
+- ">=1.0.0"
+- "<2.0.0"
+version: "0.1"
+profile: "prophecy-bigquery"
 
-profile: 'prophecy-bigquery'
-
-model-paths: [ "models" ]
-seed-paths: [ "seeds" ]
-test-paths: [ "tests" ]
-analysis-paths: [ "analysis" ]
-macro-paths: [ "macros" ]
-snapshot-paths: [ "snapshots" ]
-
-target-path: "target"
+# ==================
+# File Path Configs
+# ==================
+test-paths:
+- "tests"
 clean-targets:
-  - "target"
-  - "dbt_modules"
-  - "logs"
+- "target"
+- "dbt_modules"
+- "logs"
+snapshot-paths:
+- "snapshots"
+seed-paths:
+- "seeds"
+model-paths:
+- "models"
+- "prophecy-sources"
+analysis-paths:
+- "analysis"
+macro-paths:
+- "macros"
+target-path: "target"
 
-require-dbt-version: [ ">=1.0.0", "<2.0.0" ]
+# ==================
+# Variable Configs
+# ==================
+vars:
+  mySimpleInt: 1234
+  myString: "Random big string"
+  my_dbt_project:
+    platforms:
+    - "web"
+    - "mobile"
+  my_int: -1234
+  start_date: "2016-06-01"
 
+# ==================
+# Model Configs
+# ==================
 models:
   jaffle_shop:
-    materialized: table
+    materialized: "table"
     staging:
-      materialized: view
-
-vars:
-  # The `start_date` variable will be accessible in all resources
-  start_date: '2016-06-01'
-  # The `platforms` variable is only accessible to resources in the my_dbt_project project
-  my_dbt_project:
-    platforms: [ 'web', 'mobile' ]
-  myString: 'Random big string'
-  my_int: -1234
-  mySimpleInt: 1234
+      materialized: "view"
