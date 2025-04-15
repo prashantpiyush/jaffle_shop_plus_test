@@ -128,6 +128,10 @@
     "type" : "Model",
     "syncedOnce" : true
   }, {
+    "name" : "customers_with_subgraph",
+    "type" : "Model",
+    "syncedOnce" : false
+  }, {
     "name" : "orders",
     "type" : "Model",
     "syncedOnce" : true

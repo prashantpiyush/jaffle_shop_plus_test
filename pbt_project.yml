@@ -143,6 +143,45 @@ sqlModels:
       sources: []
       snapshots: []
     createdAt: '2025-04-12 10:34:10'
+  .prophecy/metadata/sqlmodels/customers_with_subgraph:
+    name: customers_with_subgraph
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: customer_id
+        dataType:
+          type: Integer
+      - name: first_name
+        dataType:
+          type: String
+      - name: last_name
+        dataType:
+          type: String
+      - name: first_order
+        dataType:
+          type: Date
+      - name: most_recent_order
+        dataType:
+          type: Date
+      - name: total_orders
+        dataType:
+          type: Bigint
+      - name: customer_lifetime_value
+        dataType:
+          type: Double
+    description: null
+    author: prashantpiyush@prophecy.io
+    files:
+    - models/customers_with_subgraph.sql
+    - .prophecy/ide/models/customers_with_subgraph.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-15 08:50:40'
   .prophecy/metadata/sqlmodels/stg_payments:
     name: stg_payments
     schema:
