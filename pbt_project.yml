@@ -242,6 +242,58 @@ sqlModels:
       snapshots: []
     createdAt: '2025-04-12 10:34:10'
 sqlSnapshots:
+  .prophecy/metadata/sqlsnapshots/customer_with_subgraph_snapshot:
+    name: customer_with_subgraph_snapshot
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: customer_id
+        dataType:
+          type: Integer
+      - name: first_name
+        dataType:
+          type: String
+      - name: last_name
+        dataType:
+          type: String
+      - name: first_order
+        dataType:
+          type: Date
+      - name: most_recent_order
+        dataType:
+          type: Date
+      - name: total_orders
+        dataType:
+          type: Bigint
+      - name: customer_lifetime_value
+        dataType:
+          type: Double
+      - name: dbt_scd_id
+        dataType:
+          type: String
+      - name: dbt_updated_at
+        dataType:
+          type: Date
+      - name: dbt_valid_from
+        dataType:
+          type: Date
+      - name: dbt_valid_to
+        dataType:
+          type: Date
+    description: null
+    author: prashantpiyush@prophecy.io
+    files:
+    - snapshots/customer_with_subgraph_snapshot.sql
+    - .prophecy/ide/snapshots/customer_with_subgraph_snapshot.json
+    - snapshots/schema.yml
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-15 09:10:30'
   .prophecy/metadata/sqlsnapshots/orders_snapshot:
     name: orders_snapshot
     schema:

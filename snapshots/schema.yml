@@ -25,3 +25,27 @@ snapshots:
     dataType:
       type: "String"
   tests: []
+- name: "customer_with_subgraph_snapshot"
+  columns:
+  - name: "first_name"
+    dataType:
+      type: "String"
+  - name: "customer_id"
+    dataType:
+      type: "Integer"
+  - name: "customer_lifetime_value"
+    dataType:
+      type: "Double"
+  - name: "first_order"
+    dataType:
+      type: "Date"
+  - name: "last_name"
+    dataType:
+      type: "String"
+  - name: "most_recent_order"
+    dataType:
+      type: "Date"
+  - name: "total_orders"
+    dataType:
+      type: "Bigint"
+  tests: []
