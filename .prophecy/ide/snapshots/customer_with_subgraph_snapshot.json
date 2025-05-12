@@ -2,7 +2,7 @@
   "id" : "customer_with_subgraph_snapshot",
   "metainfo" : {
     "label" : "customer_with_subgraph_snapshot",
-    "autoLayout" : false,
+    "autoLayout" : true,
     "staleState" : "none",
     "sourceSuggestions" : {
       "sources" : [ ]
@@ -25,8 +25,6 @@
       "component" : "Model",
       "metadata" : {
         "label" : "orders",
-        "x" : 20,
-        "y" : 420,
         "phase" : 0,
         "isLabelGrayed" : false
       },
@@ -52,8 +50,6 @@
       "component" : "Join",
       "metadata" : {
         "label" : "customer_payments",
-        "x" : 280,
-        "y" : 420,
         "phase" : 0,
         "macroDependencies" : [ ],
         "isLabelGrayed" : false

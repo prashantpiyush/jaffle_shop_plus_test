@@ -2,7 +2,7 @@
   "id" : "orders_snapshot",
   "metainfo" : {
     "label" : "orders_snapshot",
-    "autoLayout" : false,
+    "autoLayout" : true,
     "staleState" : "none",
     "sourceSuggestions" : {
       "sources" : [ ]
@@ -28,8 +28,6 @@
       "component" : "Model",
       "metadata" : {
         "label" : "orders_model",
-        "x" : 20,
-        "y" : 20,
         "phase" : 0,
         "isLabelGrayed" : false
       },
@@ -55,8 +53,6 @@
       "component" : "Reformat",
       "metadata" : {
         "label" : "order_details",
-        "x" : 220,
-        "y" : 20,
         "phase" : 0,
         "macroDependencies" : [ ],
         "isLabelGrayed" : false
